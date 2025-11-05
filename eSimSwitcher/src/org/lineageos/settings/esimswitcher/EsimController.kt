@@ -8,10 +8,7 @@ package org.lineageos.settings.esimswitcher
 import android.content.Context
 import android.os.ServiceManager
 import android.os.SystemProperties
-import android.se.omapi.Channel
-import android.se.omapi.Reader
 import android.se.omapi.SEService
-import android.se.omapi.Session
 import android.util.Log
 import kotlinx.coroutines.asExecutor
 import kotlinx.coroutines.Dispatchers
@@ -24,13 +21,17 @@ class EsimController(private val context: Context) {
         IOplusEsim.Stub.asInterface(ServiceManager.getService("${IOplusEsim.DESCRIPTOR}/default"))
     }
 
-    fun currentGpioState() = oplusEsimService?.esimGpio ?: 0
+    fun currentGpioState() = oplusEsimService?.esimGpio ?: 1  // Default to 1 (eSIM enabled)
 
-    fun toggleEsimState(state: Int) {
-        val gpioState = currentGpioState()
-        Log.d(TAG, "Current eSIM status = $gpioState")
+    fun isEsimPowerDisabled() = currentGpioState() == 0
 
-        if (state == gpioState) {
+    fun setEsimPowerDisabled(disabled: Boolean) {
+        val targetState = if (disabled) 0 else 1  // disabled=true means GPIO=0
+        val currentState = currentGpioState()
+
+        Log.d(TAG, "Current eSIM GPIO state = $currentState, target = $targetState")
+
+        if (targetState == currentState) {
             Log.d(TAG, "No need to change eSIM state")
             return
         }
@@ -38,10 +39,9 @@ class EsimController(private val context: Context) {
         oplusEsimService?.setUimPower(0)
 
         if (hasSN220Chipset) {
-            specialSetEsimGpio(if (gpioState == 0) 1 else 0)
-            /* oplusEsimService?.setUimPower(1) done via SEService.OnConnectedListener */
+            specialSetEsimGpio(targetState)
         } else {
-            oplusEsimService?.setEsimGpio(if (gpioState == 0) 1 else 0)
+            oplusEsimService?.setEsimGpio(targetState)
             oplusEsimService?.setUimPower(1)
         }
     }
@@ -86,7 +86,6 @@ class EsimController(private val context: Context) {
 
     companion object {
         private const val TAG = "OplusEsimController"
-
         private const val NFC_CONFIG_FILE_NAME_PROP = "persist.vendor.nfc.config_file_name"
     }
 }

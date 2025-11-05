@@ -4,12 +4,9 @@
     SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-    <string name="esim_settings_title">eSIM settings</string>
-
-    <string name="esim_toggle_title">eSIM</string>
-    <string name="esim_toggle_summary">Download and activate an operator profile to use a virtual SIM card</string>
-
-    <string name="esim_toggle_dialog">SIM 2 will be disabled if you enable eSIM. Enable it anyway?</string>
-    <string name="esim_toggle_dialog_cancel">Cancel</string>
-    <string name="esim_toggle_dialog_ok">Enable</string>
+    <string name="esim_disable_title">Disable eSIM power</string>
+    <string name="esim_disable_summary">Disabling eSIM power allows using the second physical SIM slot</string>
+    <string name="esim_disable_dialog">Disabling eSIM power will allow you to use the second physical SIM slot, and disable any installed eSIM! Continue?</string>
+    <string name="esim_disable_dialog_cancel">Cancel</string>
+    <string name="esim_disable_dialog_ok">Continue</string>
 </resources>

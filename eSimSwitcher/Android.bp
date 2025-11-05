@@ -22,6 +22,8 @@ android_app {
         "vendor.oplus.hardware.esim-V1-java",
     ],
 
+    resource_dirs: ["res"],
+
     optimize: {
         proguard_flags_files: ["proguard.flags"],
     },

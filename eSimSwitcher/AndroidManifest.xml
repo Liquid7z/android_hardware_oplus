@@ -7,21 +7,25 @@
           package="org.lineageos.settings.esimswitcher">
 
     <uses-permission android:name="android.permission.SECURE_ELEMENT_PRIVILEGED_OPERATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
 
-    <application
-        android:label="@string/device_settings_app_name"
-        android:persistent="true"
-        android:theme="@style/Theme.SubSettingsBase">
+    <application android:persistent="true">
 
-        <activity
+        <service
+            android:name=".EsimObserverService"
             android:exported="false"
-            android:label="@string/esim_settings_title"
-            android:name=".EsimSettingsActivity">
+            android:directBootAware="true" />
+
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="false"
+            android:directBootAware="true">
             <intent-filter>
-                <action android:name="org.lineageos.settings.device.ESIM_SETTINGS" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>
-        </activity>
+        </receiver>
 
     </application>
 </manifest>
