@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    SPDX-FileCopyrightText: 2025 The LineageOS Project
+    SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="esim_disable_title">Disable eSIM power</string>
+    <string name="esim_disable_summary">Disabling eSIM power allows using the second physical SIM slot</string>
+    <string name="esim_disable_dialog">Disabling eSIM power will allow you to use the second physical SIM slot, and disable any installed eSIM! Continue?</string>
+    <string name="esim_disable_dialog_cancel">Cancel</string>
+    <string name="esim_disable_dialog_ok">Continue</string>
+</resources>

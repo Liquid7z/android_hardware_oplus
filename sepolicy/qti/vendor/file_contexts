@@ -46,6 +46,12 @@
 # Engineering
 /mnt/vendor/persist/engineermode(/.*)?    u:object_r:vendor_persist_engineer_file:s0
 
+# eSIM
+/(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.esim@1\.0-service    u:object_r:hal_oplus_esim_aidl_exec:s0
+/dev/esim-det                                                          u:object_r:esim_det_device:s0
+/dev/esim-en                                                           u:object_r:esim_en_device:s0
+/dev/esim-gpio                                                         u:object_r:esim_gpio_device:s0
+
 # Face
 /data/vendor_de/[0-9]+/faceunlock(/.*)?    u:object_r:face_vendor_data_file:s0
 /(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.biometrics\.face@1\.0-service    u:object_r:hal_face_default_exec:s0
@@ -135,6 +141,20 @@
 # Reserve
 /dev/block/platform/soc/1d84000\.ufshc/by-name/oplusreserve[1-5]    u:object_r:vendor_reserve_partition:s0
 /dev/block/platform/soc/4804000\.ufshc/by-name/oplusreserve[1-5]    u:object_r:vendor_reserve_partition:s0
+/mnt/vendor/oplusreserve(/.*)?                                      u:object_r:oplus_reserve_file:s0
+/mnt/vendor/oplusreserve/connectivity(/.*)?                         u:object_r:oplus_reserve_connectivity_file:s0
+/mnt/vendor/oplusreserve/connectivity/felicalock(/.*)?              u:object_r:oplus_reserve_connectivity_felicalock:s0
+/mnt/vendor/oplusreserve/connectivity/nfclock(/.*)?                 u:object_r:oplus_reserve_connectivity_felicalock:s0
+/mnt/vendor/oplusreserve/media(/.*)?                                u:object_r:oplus_reserve_media_file:s0
+/mnt/vendor/oplusreserve/media/Camera(/.*)?                         u:object_r:oplus_reserve_media_camera:s0
+/mnt/vendor/oplusreserve/media/dropbox(/.*)?                        u:object_r:oplus_reserve_media_dropbox:s0
+/mnt/vendor/oplusreserve/media/engineermode(/.*)?                   u:object_r:oplus_reserve_media_engineermode:s0
+/mnt/vendor/oplusreserve/media/log(/.*)?                            u:object_r:oplus_reserve_media_log:s0
+/mnt/vendor/oplusreserve/radio(/.*)?                                u:object_r:oplus_reserve_radio_file:s0
+/mnt/vendor/oplusreserve/system(/.*)?                               u:object_r:oplus_reserve_system_file:s0
+/mnt/vendor/oplusreserve/system/config(/.*)?                        u:object_r:oplus_reserve_system_config:s0
+/mnt/vendor/oplusreserve/system/flag(/.*)?                          u:object_r:oplus_reserve_system_flag:s0
+/mnt/vendor/oplusreserve/system/ssv(/.*)?                           u:object_r:oplus_reserve_system_ssv:s0
 
 # Sensors
 /(odm|vendor/odm)/bin/hw/vendor-oplus-hardware-oplusSensor-V1-service         u:object_r:hal_oplus_sensor_aidl_exec:s0
@@ -143,6 +163,7 @@
 /(odm|vendor/odm)/bin/oplus_sensor_fb                                         u:object_r:vendor_sensors_exec:s0
 /vendor/bin/hw/android\.hardware\.sensors-service\.oplus-multihal             u:object_r:hal_sensors_default_exec:s0
 /dev/ssc_interactive                                                          u:object_r:ssc_interactive_device:s0
+/(odm|vendor/odm)/etc/fusionlight.json                                        u:object_r:vendor_fusionlight_file:s0
 
 # Spunvm
 /dev/block/platform/soc/1d84000\.ufshc/by-name/spunvm    u:object_r:vendor_efs_boot_dev:s0
